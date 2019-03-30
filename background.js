@@ -1,23 +1,15 @@
-const oldReddit = "https://old.reddit.com";
+const oldRustlang = "https://prev.rust-lang.org";
 
 chrome.webRequest.onBeforeRequest.addListener(
   function(details) {
-    // Exclude poll pages
-    if (details.url.match(/^https?:\/\/(www\.)*reddit.com\/poll/)) {
-      return;
-    }
-
     return {
-      redirectUrl:
-        oldReddit + details.url.match(/^https?:\/\/[^\/]+([\S\s]*)/)[1]
+      redirectUrl: oldRustlang + details.url.match(/^https?:\/\/[^\/]+([\S\s]*)/)[1]
     };
   },
   {
     urls: [
-      "*://reddit.com/*",
-      "*://www.reddit.com/*",
-      "*://np.reddit.com/*",
-      "*://new.reddit.com/*",
+      "*://rust-lang.org/*",
+      "*://www.rust-lang.org/*",
     ],
     types: [
       "main_frame",
